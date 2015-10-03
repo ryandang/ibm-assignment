@@ -1,0 +1,39 @@
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="flickr-photos">All Photos</a></li>
+        <li class="active">{{selectedPhoto.info.title._content}}</li>
+    </ol>
+
+    <div data-ng-class="{loading: flickrPhotos.isLoading}"></div>
+
+    <div class="col-md-12">
+        <h1>{{selectedPhoto.info.title._content}} - {{selectedPhoto.photo.label}}</h1>
+    </div>
+
+    <div class="col-md-12">
+        <label>Posted By: {{selectedPhoto.info.owner.realname}}</label>
+    </div>
+
+    <div class="col-md-2">
+        <label>Available Sizes:</label>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4 photo-size-container" data-ng-repeat="photoSize in photoSizes.allPhotoSizes">
+                <span class="photo-size"
+                      data-ng-class="{isCurrentPhoto: photoSize.label === selectedPhoto.photo.label}"
+                      tabindex=0
+                      data-ng-click="updateSelectedPhoto(photoSize)">{{photoSize.label}}
+                </span>
+                ({{photoSize.width}} x {{photoSize.height}})
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 view-original-photo">
+        <img data-ng-src="{{selectedPhoto.photo.source}}"
+             title="{{selectedPhoto.info.title._content}}"
+             alt="{{selectedPhoto.info.title._content}}"
+        />
+    </div>
+</div>
